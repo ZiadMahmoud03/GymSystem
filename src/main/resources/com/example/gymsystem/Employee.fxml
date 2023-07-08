@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="904.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gymsystem.EController">
+   <children>
+      <VBox prefHeight="510.0" prefWidth="259.0" spacing="20.0" style="-fx-background-color: #04204d;">
+         <children>
+            <AnchorPane prefHeight="80.0" prefWidth="259.0">
+               <children>
+                  <Label layoutX="95.0" layoutY="22.0" text="GMS" textFill="WHITE">
+                     <font>
+                        <Font name="Times New Roman Bold Italic" size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Button fx:id="Home_btn" mnemonicParsing="false" onAction="#showHomePane" prefHeight="47.0" prefWidth="260.0" stylesheets="@Buttons2.css" text="Home" />
+            <Button fx:id="membr_btn" mnemonicParsing="false" onAction="#showViewMemberPane" prefHeight="47.0" prefWidth="259.0" stylesheets="@Buttons2.css" text="View member account" />
+            <Button fx:id="Class_btn" mnemonicParsing="false" onAction="#showViewClassPane" prefHeight="47.0" prefWidth="259.0" stylesheets="@Buttons2.css" text="View classes" />
+            <Button fx:id="Logout" mnemonicParsing="false" onAction="#logout" prefHeight="47.0" prefWidth="259.0" stylesheets="@Buttons2.css" text="Logout" />
+         </children>
+      </VBox>
+      <AnchorPane fx:id="Home_pane" layoutX="259.0" prefHeight="510.0" prefWidth="664.0">
+         <children>
+            <Label alignment="CENTER" layoutY="66.0" prefHeight="66.0" prefWidth="664.0" style="-fx-background-color: #0c358d;" text="Welcome!" textFill="WHITE">
+               <font>
+                  <Font size="45.0" />
+               </font>
+            </Label>
+            <Label layoutX="129.0" layoutY="217.0" text="What would you like to do today?">
+               <font>
+                  <Font name="System Bold Italic" size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="ViewMemberAcc_pane" layoutX="259.0" prefHeight="510.0" prefWidth="664.0" visible="false">
+         <children>
+            <Label alignment="CENTER" layoutY="66.0" prefHeight="66.0" prefWidth="664.0" style="-fx-background-color: #0c358d;" text="Please select what you would like to do" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="36.0" />
+               </font>
+            </Label>
+            <Button fx:id="AddNewMemberPane_btn" layoutX="30.0" layoutY="174.0" mnemonicParsing="false" onAction="#showAddNewMemberPane" prefHeight="70.0" prefWidth="250.0" stylesheets="@MoreButtons.css" text="Add new member" />
+            <Button fx:id="EditMemberPane_btn" layoutX="30.0" layoutY="255.0" mnemonicParsing="false" onAction="#showEditMemberPane" prefHeight="70.0" prefWidth="250.0" stylesheets="@MoreButtons.css" text="Edit member info" />
+            <Button fx:id="DeleteMemberPane_btn" layoutX="30.0" layoutY="342.0" mnemonicParsing="false" onAction="#showDeleteAccPane" prefHeight="70.0" prefWidth="250.0" stylesheets="@MoreButtons.css" text="Delete member  " />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="AddNewMember_pane" layoutX="259.0" prefHeight="510.0" prefWidth="664.0" visible="false">
+         <children>
+            <Label alignment="CENTER" layoutY="66.0" prefHeight="66.0" prefWidth="664.0" style="-fx-background-color: #0c358d;" text="Add New Member" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="36.0" />
+               </font>
+            </Label>
+            <TextField fx:id="AddFirstN" layoutX="14.0" layoutY="244.0" promptText="First Name" />
+            <TextField fx:id="AddLastN" layoutX="201.0" layoutY="244.0" promptText="Last Name" />
+            <TextField fx:id="AddNationalID" layoutX="15.0" layoutY="199.0" promptText="Nantional ID" />
+            <TextField fx:id="AddPhoneN" layoutX="14.0" layoutY="291.0" promptText="Phone Number" />
+            <ComboBox fx:id="gender_comboBox" layoutX="14.0" layoutY="331.0" onAction="#getGender" prefWidth="150.0" promptText="Gender" />
+            <ComboBox fx:id="Membership_comboBox" layoutX="14.0" layoutY="375.0" onAction="#getMembershipType" prefWidth="150.0" promptText="Membership Type" />
+            <Button fx:id="AddMember_btn" layoutX="508.0" layoutY="457.0" mnemonicParsing="false" onAction="#addMember" stylesheets="@MoreButtons.css" text="Add member" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="EditMember_pane" layoutX="259.0" prefHeight="510.0" prefWidth="664.0" visible="false">
+         <children>
+            <Label alignment="CENTER" layoutY="66.0" prefHeight="66.0" prefWidth="664.0" style="-fx-background-color: #0c358d;" text="Edit member data" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="36.0" />
+               </font>
+            </Label>
+            <TableView fx:id="EditMemberData" editable="true" layoutY="208.0" prefHeight="213.0" prefWidth="664.0">
+              <columns>
+                <TableColumn fx:id="EditMemberFirstN" prefWidth="84.0" text="First Name" />
+                  <TableColumn fx:id="EditMemberLastN" prefWidth="85.0" text="Last Name" />
+                  <TableColumn fx:id="EditMemberNationalID" prefWidth="89.0" text="National ID" />
+                  <TableColumn fx:id="EditMemberGender" prefWidth="71.0" text="Gender" />
+                  <TableColumn fx:id="EditMemberPhoneN" prefWidth="115.0" text="Phone Number" />
+                  <TableColumn fx:id="EditMemberType" prefWidth="219.0" text="Membership Type" />
+              </columns>
+            </TableView>
+            <Label layoutX="14.0" layoutY="146.0" text="Double click on any field to edit the members data" />
+            <Button fx:id="EditMemberData_btn" layoutX="500.0" layoutY="457.0" mnemonicParsing="false" onAction="#editMember" stylesheets="@MoreButtons.css" text="Save changes" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="DeleteAcc_pane" layoutX="259.0" prefHeight="510.0" prefWidth="664.0" visible="false">
+         <children>
+            <Label alignment="CENTER" layoutY="66.0" prefHeight="66.0" prefWidth="664.0" style="-fx-background-color: #0c358d;" text="Delete member data" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="170.0" prefHeight="20.0" prefWidth="529.0" text="Please enter the appropriate data for each field for  the member you want to delete:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="DelNationalID" layoutX="14.0" layoutY="216.0" promptText="National ID" />
+            <Button fx:id="DelMember_btn" layoutX="483.0" layoutY="457.0" mnemonicParsing="false" onAction="#deleteMember" stylesheets="@MoreButtons.css" text="Delete Member" />
+            <TextField fx:id="DelFirstN" layoutX="14.0" layoutY="255.0" promptText="First Name" />
+            <TextField fx:id="DelLastN" layoutX="183.0" layoutY="255.0" promptText="Last Name" />
+            <TextField fx:id="DelPhoneN" layoutX="14.0" layoutY="297.0" promptText="Phone Number" />
+            <ComboBox fx:id="DelGender_combo" layoutX="14.0" layoutY="341.0" onAction="#getGender" prefWidth="150.0" promptText="Gender" />
+            <ComboBox fx:id="DelMemType_combo" layoutX="14.0" layoutY="387.0" onAction="#getMembershipType" prefWidth="150.0" promptText="Membership Type" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="ViewClasses_Pane" layoutX="259.0" prefHeight="510.0" prefWidth="664.0" visible="false">
+         <children>
+            <Label alignment="CENTER" layoutY="66.0" prefHeight="66.0" prefWidth="664.0" style="-fx-background-color: #0c358d;" text="Please select what you would like to do" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="36.0" />
+               </font>
+            </Label>
+            <Button fx:id="AddMemToClassPane_btn" layoutX="22.0" layoutY="175.0" mnemonicParsing="false" onAction="#showAddMemToClassPane" prefHeight="70.0" prefWidth="297.0" stylesheets="@MoreButtons.css" text="Add member to a class" />
+            <Button fx:id="RemoveMemFromClassPane_btn" layoutX="22.0" layoutY="273.0" mnemonicParsing="false" onAction="#showRemoveMemFromClassPane" prefHeight="70.0" prefWidth="297.0" stylesheets="@MoreButtons.css" text="Remove member from a class" />
+            <Button fx:id="ViewMemInClassPane_btn" layoutX="22.0" layoutY="374.0" mnemonicParsing="false" onAction="#showViewMemInClassPane" prefHeight="70.0" prefWidth="297.0" stylesheets="@MoreButtons.css" text="View member in a class" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="AddMemberToClass_Pane" layoutX="259.0" prefHeight="510.0" prefWidth="664.0" visible="false">
+         <children>
+            <Label alignment="CENTER" layoutY="66.0" prefHeight="66.0" prefWidth="664.0" style="-fx-background-color: #0c358d;" text="Add member to a class" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="36.0" />
+               </font>
+            </Label>
+            <TextField fx:id="AddClassName" layoutX="383.0" layoutY="165.0" promptText="Class Name" />
+            <Button fx:id="AddClassMember_btn" layoutX="502.0" layoutY="457.0" mnemonicParsing="false" onAction="#addMemberToClass" stylesheets="@MoreButtons.css" text="Add member " />
+            <TextField fx:id="ClassMemFirstN" layoutX="14.0" layoutY="165.0" promptText="First Name " />
+            <TextField fx:id="ClassMemLastN" layoutX="183.0" layoutY="165.0" promptText="Last Name" />
+            <TextField fx:id="ClassMemNID" layoutX="14.0" layoutY="203.0" promptText="National ID" />
+            <TextField fx:id="ClassMemPhoneN" layoutX="14.0" layoutY="243.0" promptText="Phone Number" />
+            <TextField fx:id="AddClassDescription" layoutX="383.0" layoutY="203.0" promptText="Description" />
+            <TextField fx:id="AddClassMemCount" layoutX="486.0" layoutY="243.0" promptText="10-25" />
+            <ComboBox fx:id="ClassMemGender_combo" layoutX="14.0" layoutY="297.0" onAction="#getGender" prefWidth="150.0" promptText="Gender" />
+            <ComboBox fx:id="ClassMemType_combo" layoutX="14.0" layoutY="335.0" onAction="#getMembershipType" prefWidth="150.0" promptText="Membership Type" />
+            <ComboBox fx:id="AddClassDay_combo" layoutX="383.0" layoutY="297.0" onAction="#getDay" prefWidth="150.0" promptText="Day" />
+            <ComboBox fx:id="AddClassTime_combo" layoutX="383.0" layoutY="335.0" onAction="#getTime" prefWidth="150.0" promptText="Time" />
+            <Line endX="37.0" endY="217.0" layoutX="332.0" layoutY="255.0" startX="37.0" startY="-90.0" />
+            <Label layoutX="383.0" layoutY="247.0" text="Member count:" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="RemoveMemberFromClass_Pane" layoutX="259.0" prefHeight="510.0" prefWidth="664.0" visible="false">
+         <children>
+            <Label alignment="CENTER" layoutY="66.0" prefHeight="66.0" prefWidth="664.0" style="-fx-background-color: #0c358d;" text="Remove member from a class" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="36.0" />
+               </font>
+            </Label>
+            <Button fx:id="RemoveMemFromClass_btn" layoutX="474.0" layoutY="457.0" mnemonicParsing="false" onAction="#removeMemberFromClass" stylesheets="@MoreButtons.css" text="Remove member " />
+            <TextField fx:id="RemoveClassName" layoutX="393.0" layoutY="175.0" promptText="Class Name" />
+            <TextField fx:id="RemoveClassMemFirstN" layoutX="24.0" layoutY="175.0" promptText="First Name " />
+            <TextField fx:id="RemoveClassMemLastN" layoutX="193.0" layoutY="175.0" promptText="Last Name" />
+            <TextField fx:id="RemoveClassMemNID" layoutX="24.0" layoutY="213.0" promptText="National ID" />
+            <TextField fx:id="RemoveClassMemPhoneN" layoutX="24.0" layoutY="253.0" promptText="Phone Number" />
+            <TextField fx:id="RemoveClassDescription" layoutX="393.0" layoutY="213.0" promptText="Description" />
+            <TextField fx:id="RemoveClassMemCount" layoutX="496.0" layoutY="253.0" promptText="10-25" />
+            <ComboBox fx:id="RemoveClassMemGender_combo" layoutX="24.0" layoutY="307.0" onAction="#getGender" prefWidth="150.0" promptText="Gender" />
+            <ComboBox fx:id="RemoveClassMemType_combo" layoutX="24.0" layoutY="345.0" onAction="#getMembershipType" prefWidth="150.0" promptText="Membership Type" />
+            <ComboBox fx:id="RemoveClassDay_combo" layoutX="393.0" layoutY="307.0" onAction="#getDay" prefWidth="150.0" promptText="Day" />
+            <ComboBox fx:id="RemoveClassTime_combo" layoutX="393.0" layoutY="345.0" onAction="#getTime" prefWidth="150.0" promptText="Time" />
+            <Line endX="37.0" endY="217.0" layoutX="342.0" layoutY="265.0" startX="37.0" startY="-90.0" />
+            <Label layoutX="393.0" layoutY="257.0" text="Member count:" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="ViewMemberInClass_Pane" layoutX="259.0" prefHeight="510.0" prefWidth="664.0" visible="false">
+         <children>
+            <Label alignment="CENTER" layoutY="66.0" prefHeight="66.0" prefWidth="664.0" style="-fx-background-color: #0c358d;" text="View members in a class" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="36.0" />
+               </font>
+            </Label>
+            <TableView fx:id="ViewMemberTable" editable="true" layoutY="208.0" prefHeight="213.0" prefWidth="664.0">
+               <columns>
+                  <TableColumn fx:id="ViewMemberFirstN" prefWidth="84.0" text="First Name" />
+                  <TableColumn fx:id="ViewMemberLastN" prefWidth="79.0" text="Last Name" />
+                  <TableColumn fx:id="ViewMemberNID" prefWidth="100.0" text="National ID" />
+                  <TableColumn fx:id="ViewMemberGender" prefWidth="69.0" text="Gender" />
+                  <TableColumn fx:id="ViewMemberPhoneN" prefWidth="110.0" text="Phone Number" />
+                  <TableColumn fx:id="ViewMemberType" prefWidth="221.0" text="Membership Type" />
+               </columns>
+            </TableView>
+            <Label layoutX="14.0" layoutY="160.0" text="Please enter the class name:" />
+            <TextField fx:id="FindMemberInClass" layoutX="183.0" layoutY="156.0" promptText="Class Name" />
+            <Button fx:id="CheckFind_btn" layoutX="358.0" layoutY="156.0" mnemonicParsing="false" onAction="#findMemberInClass" stylesheets="@Buttons.css" text="✓" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
